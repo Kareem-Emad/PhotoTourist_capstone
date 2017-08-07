@@ -4,7 +4,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
+gem 'rack-cors', :require => 'rack/cors'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
@@ -25,6 +25,11 @@ gem 'httparty'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+gem 'jquery-rails'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -37,6 +42,16 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+group :production do
+  gem 'rails_12factor'
+end
 gem 'mongoid'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap', '~>3.3', '>= 3.3.7'
+  gem 'rails-assets-angular', '~>1.5', '>= 1.5.8'
+  gem 'rails-assets-angular-ui-router', '~>0.3', '>= 0.3.1'
+  gem 'rails-assets-angular-resource', '~>1.5', '>= 1.5.8'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
