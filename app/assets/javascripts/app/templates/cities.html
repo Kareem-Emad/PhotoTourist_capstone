@@ -1,0 +1,38 @@
+<div class="text-center">
+  <h3>cities</h3>
+  <span>(from app/templates/cities.html)</span>
+
+  <form>
+    <div class="form-group" style="margin-left:766px;margin-right:766px" >
+      <label>Name:</label>
+      <input class="form-control" name="name"
+              ng-model="citiesVM.city.name"
+              required="required" />
+    </div>
+    <div class="form-group">
+          <button class="btn btn-primary" ng-if="!citiesVM.city.id" 
+             type="submit"
+             ng-click="citiesVM.create()">Create City</button>  
+         <div ng-if="citiesVM.city.id">
+          <button class="btn btn-primary"   type="submit"
+                  ng-click="citiesVM.update()">Update City</button>
+          <button class="btn btn-primary"  type="submit"
+                  ng-click="citiesVM.remove()">Delete City</button>
+        </div>
+    </div>               
+  </form>
+  <hr>
+  <div class="container">
+    <div class="offset-1">
+      <h3> Cities</h3>
+      <ul class="list-group list ">
+        <a href="" ng-click="citiesVM.edit(city)" class="list-group-item" ng-repeat="city in citiesVM.cities | orderBy:'name'">
+          <p>{{city.name}}</p>
+        </a>
+      </ul>
+    </div>
+
+  </div>
+
+
+</div>

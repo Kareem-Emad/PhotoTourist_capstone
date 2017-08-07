@@ -1,18 +1,40 @@
-<title>Photo Tourist</title>
-<link rel="shortcut icon" href="http://www.iconj.com/ico/w/s/wsbxsgy0m6.ico" type="image/x-icon" />
-<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<div style="text-align:center;vertical-align: middle;padding:366px;color:white;font-family: 'Indie Flower', cursive;">
-	<h1 style="font-weight: bold;"> App under construction	</h1>
-	<h3> It will be amazing!</h3>
-	<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
-	<span class="sr-only">Loading...</span>
-</div>
-
-<style>
-	body{
-		margin:0px;
-		padding:0px;
-		background-color: #1e90ff;
-	}
-</style>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="http://www.iconj.com/ico/w/s/wsbxsgy0m6.ico" type="image/x-icon" />
+		<title>Photo Tourist</title>
+		<%= stylesheet_link_tag  'https://fonts.googleapis.com/css?family=Indie+Flower' %>
+    <%= stylesheet_link_tag    "spa-manifest", :media => "all" %>
+    <%= javascript_include_tag "spa-manifest" %>
+  </head>
+  <body ng-app='app'>
+  		<!--
+		<div ng-controller='citiesController' style="text-align:center;vertical-align: middle;padding:366px;color:white;font-family: 'Indie Flower', cursive;">
+			<h1 style="font-weight: bold;"> App under construction	</h1>
+			<h3> It will be amazing!</h3>
+			<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+			<span class="sr-only">Loading...</span>
+		</div>
+		<style>
+			body{
+				margin:0px;
+				padding:0px;
+				background-color: #1e90ff;
+			}
+		</style>
+		-->
+		<cities-list></cities-list>
+		<ui-view></ui-view>
+	<style>
+  		.container a:hover {
+  	  		background-color: #2e6da4;
+  	  		color: white;
+  		}
+  		body{
+  		}
+	</style>
+  </body>
+</html>

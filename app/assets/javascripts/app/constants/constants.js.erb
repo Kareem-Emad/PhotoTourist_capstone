@@ -1,0 +1,14 @@
+(function() {
+  "use strict";
+
+  angular
+    .module("app")
+    .constant("APP_CONFIG", {
+      server_url: "<%= ENV['RAILS_API_URL'] %>",
+
+      main_page_html: "<%= asset_path('app/templates/main.html') %>",
+
+      cities_html: "<%= asset_path('app/templates/cities.html') %>"
+    });
+
+})();
