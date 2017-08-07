@@ -11,6 +11,7 @@
     <%= javascript_include_tag "spa-manifest" %>
   </head>
   <body ng-app='app'>
+  	<h1 class="text-center"> I'm the main application index file</h1>
   		<!--
 		<div ng-controller='citiesController' style="text-align:center;vertical-align: middle;padding:366px;color:white;font-family: 'Indie Flower', cursive;">
 			<h1 style="font-weight: bold;"> App under construction	</h1>
@@ -28,13 +29,5 @@
 		-->
 		<cities-list></cities-list>
 		<ui-view></ui-view>
-	<style>
-  		.container a:hover {
-  	  		background-color: #2e6da4;
-  	  		color: white;
-  		}
-  		body{
-  		}
-	</style>
   </body>
 </html>
