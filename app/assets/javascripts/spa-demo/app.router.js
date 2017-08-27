@@ -33,6 +33,10 @@
       url: "/things/:id",
       templateUrl: APP_CONFIG.things_page_html
     })
+    .state("places",{
+      url: "/places/:id",
+      templateUrl: APP_CONFIG.places_page_html
+    })
     ; 
 
     //$urlRouterProvider.otherwise("/"); eliminate default route

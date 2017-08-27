@@ -1,0 +1,12 @@
+<div class="container-fluid">
+	<div class="place-list" ng-show="true">
+	  <ul>
+	    <li ng-repeat="item in placesVM.places ">
+	      <a ui-sref="places({id:item.id})">
+	         <span class="place_id id">{{item.id}}</span>
+	         {{item.title}} | {{item.city}} | {{item.country}}
+	      </a>
+	    </li>
+	  </ul>
+	</div>
+</div>

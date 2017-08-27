@@ -45,3 +45,6 @@
 //= require spa-demo/subjects/things/things_authz.service
 //= require spa-demo/subjects/things/things_authz.directive
 //= require spa-demo/subjects/things/things.component
+//= require spa-demo/subjects/places/places.controller.js
+//= require spa-demo/subjects/places/places.service.js
+//= require spa-demo/subjects/places/places.directive.js
