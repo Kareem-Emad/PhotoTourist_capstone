@@ -17,6 +17,7 @@
       function activate() {
         newPlace();
         vm.places = Place.query();
+        console.log(vm.places);
       }
 
       function newPlace() {
