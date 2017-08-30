@@ -28,10 +28,17 @@ class PlacesController < ApplicationController
     authorize Place
     @place = Place.new(place_params)
     @place.creator_id=current_user.id
-    if @place.save
-      render json: @place, status: :created, location: @place
-    else
-      render json: @place.errors, status: :unprocessable_entity
+
+    User.transaction do
+      if @place.save
+        role=current_user.add_role(Role::ORGANIZER, @place)
+        @place.user_roles << role.role_name
+        role.save!
+        #json: @place
+        render :show, status: :created, location: @place
+      else
+        render json: {errors:@place.errors.messages}, status: :unprocessable_entity
+      end
     end
   end
 
@@ -42,7 +49,7 @@ class PlacesController < ApplicationController
     if @place.update(place_params)
       head :no_content
     else
-      render json: @place.errors, status: :unprocessable_entity
+      render json: {errors:@place.errors.messages}, status: :unprocessable_entity
     end
   end
 
