@@ -1,0 +1,66 @@
+<form class="place-form row" name="placeform">
+  <span class="place_id id">{{$ctrl.item.id}}</span>
+  <span class="invalid">{{$ctrl.item.errors.full_messages}}</span>
+
+  <div class="place-features row col-lg-12">
+    <label class="col-xs-3">City:</label>
+    <input class="col-xs-9"
+           name="place-city" 
+           ng-model="$ctrl.item.city" 
+           ng-readonly="!$ctrl.authz.canUpdate"
+           maxlength="80"
+           pattern=".{3,}" title="3 character minimum for City"/>
+
+    <label class="col-xs-3">Country:</label>
+    <input class="col-xs-9"
+           name="place-country" 
+           ng-model="$ctrl.item.country" 
+           ng-readonly="!$ctrl.authz.canUpdate"
+           maxlength="80"
+           pattern=".{3,}" title="3 character minimum for Country"/>
+
+    <label class="col-xs-3">Title:</label>
+    <input class="col-xs-9"
+           name="place-title" 
+           ng-model="$ctrl.item.title" 
+           ng-readonly="!$ctrl.authz.canUpdate"
+           maxlength="80"
+           pattern=".{3,}" title="3 character minimum for Title"/>
+
+
+    <span class="invalid">{{$ctrl.item.errors.name}}</span>
+  </div>
+
+
+
+  <div class="place-controls">
+    <span ng-show="$ctrl.authz.authenticated">
+      <button name="place-create"
+              ng-show="!$ctrl.item.id && $ctrl.authz.canCreate"
+              type="submit"
+              class="btn btn-primary" 
+              ng-disabled="placeform.$invalid"
+              ng-click="$ctrl.create()">Create Place</button>
+
+      <span ng-show="$ctrl.item.id">
+        <button name="place-update"
+                type="submit"
+                class="btn btn-primary" 
+                ng-show="$ctrl.authz.canUpdate" 
+                ng-disabled="!placeform.$dirty"
+                ng-click="$ctrl.update()">Update Place</button>
+        <button name="place-delete"
+                type="submit"
+                class="btn btn-danger" 
+                ng-show="$ctrl.authz.canDelete" 
+                ng-click="$ctrl.remove()">Delete Place</button>
+      </span>
+    </span>
+    <button name="place-clear"
+            type="submit"
+            class="btn btn-default" 
+            ng-show="$ctrl.item.id || placeform.$dirty"
+            ng-click="$ctrl.clear()">Clear Place</button>
+  </div>
+
+</form>

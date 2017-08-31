@@ -48,3 +48,6 @@
 //= require spa-demo/subjects/places/places.controller.js
 //= require spa-demo/subjects/places/places.service.js
 //= require spa-demo/subjects/places/places.directive.js
+//= require spa-demo/subjects/places/places_authz.service.js
+//= require spa-demo/subjects/places/places_authz.directive.js
+//= require spa-demo/subjects/places/places.component.js

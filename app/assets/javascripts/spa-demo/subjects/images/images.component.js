@@ -8,7 +8,7 @@
       controller: ImageSelectorController,
       bindings: {
         authz: "<"
-      },
+      }
     })
     .component("sdImageEditor", {
       templateUrl: imageEditorTemplateUrl,
@@ -57,7 +57,7 @@
                                    "spa-demo.authz.Authz",                                   
                                    "spa-demo.subjects.Image",
                                    "spa-demo.subjects.ImageThing",
-                                   "spa-demo.subjects.ImageLinkableThing",
+                                   "spa-demo.subjects.ImageLinkableThing"
                                    ];
   function ImageEditorController($scope, $q, $state, $stateParams, 
                                  Authz, Image, ImageThing,ImageLinkableThing) {

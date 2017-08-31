@@ -1,6 +1,9 @@
-<div class="container-fluid">
-	<div class="place-list" ng-show="true">
-	  <ul>
+<div class="container-fluid" sd-places-authz>
+	<sd-place-editor authz="vm.authz"></sd-place-editor>
+	<sd-place-selector authz="vm.authz"></sd-place-selector>    
+<!--
+	<div class="place-list" ng-show="true" sd-places-authz>
+	  <ul >
 	    <li ng-repeat="item in placesVM.places ">
 	      <a ui-sref="places({id:item.id})">
 	         <span class="place_id id">{{item.id}}</span>
@@ -9,4 +12,5 @@
 	    </li>
 	  </ul>
 	</div>
+-->
 </div>
