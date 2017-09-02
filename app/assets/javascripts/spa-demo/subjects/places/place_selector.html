@@ -2,7 +2,6 @@
   <ul>
     <li ng-repeat="item in $ctrl.items | orderBy:'caption'">
       <a ui-sref="places({id:item.id})">
-          <span class="place_id id">{{item.id}}</span>
 	         {{item.title}} | {{item.city}} | {{item.country}}
       <span ng-show="$ctrl.authz.canUpdateItem(item)"> *</span>
       </a>
