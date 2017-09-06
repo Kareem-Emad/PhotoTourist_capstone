@@ -1,7 +1,12 @@
 <div class="thing-list" ng-show="$ctrl.authz.canQuery">
+  <div ng-show="$ctrl.items">
+	  <label>Filter By Tag</label>
+	  <input type="text" name="TagQuery" ng-model="$ctrl.tag_query">
+  </div>
   <ul>
-    <li ng-repeat="item in $ctrl.items | orderBy:'name'">
-      <a ui-sref="things({id:item.id})">
+    <li ng-repeat="item in $ctrl.items | orderBy:'name'"
+     ng-show="item.tag_titles.indexOf($ctrl.tag_query)!=-1||$ctrl.tag_query==$ctrl.none">
+      <a ui-sref="things({id:item.id})" >
          <span class="thing_id id">{{item.id}}</span>
          {{item.name}}
       <span ng-show="$ctrl.authz.canUpdateItem(item)"> *</span>

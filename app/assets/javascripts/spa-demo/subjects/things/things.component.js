@@ -36,9 +36,10 @@
                                    "$state","$stateParams",
                                    "spa-demo.authz.Authz",
                                    "spa-demo.subjects.Thing",
-                                   "spa-demo.subjects.ThingImage"];
+                                   "spa-demo.subjects.ThingImage",
+                                   "spa-demo.subjects.Tag"];
   function ThingEditorController($scope, $q, $state, $stateParams, 
-                                 Authz, Thing, ThingImage) {
+                                 Authz, Thing, ThingImage,Tag) {
     var vm=this;
     vm.create = create;
     vm.clear  = clear;
@@ -46,6 +47,9 @@
     vm.remove  = remove;
     vm.haveDirtyLinks = haveDirtyLinks;
     vm.updateImageLinks = updateImageLinks;
+    vm.tags=[];
+    vm.ntag_title="";
+    vm.addTag= addTag;
 
     vm.$onInit = function() {
       console.log("ThingEditorController",$scope);
@@ -68,6 +72,8 @@
     }
 
     function reload(thingId) {
+      vm.tags = Tag.query();
+      console.log("Tags===>",vm.tags);
       var itemId = thingId ? thingId : vm.item.id;      
       console.log("re/loading thing", itemId);
       vm.images = ThingImage.query({thing_id:itemId});
@@ -111,6 +117,30 @@
       var update=vm.item.$update();
       updateImageLinks(update);
     }
+
+    function addTag(){
+      if(vm.item.tag_titles.indexOf(vm.ntag_title)!=-1||vm.ntag_title==""){
+        console.log("cancled");
+        console.log("title===>" ,vm.ntag_title);
+        return;
+      } 
+      else{
+        console.log("continued");
+      }
+      var tag= new Tag();
+      tag.title=vm.ntag_title;
+      tag.$save()
+        .then(function(response){
+          vm.tags.push(tag);
+          vm.item.tags.push(tag);
+          vm.item.tag_titles.push(tag.title);
+          console.log("ok===>>");
+          vm.item.$update();
+        })
+        .catch(handleError); 
+
+    }
+
     function updateImageLinks(promise) {
       console.log("updating links to images");
       var promises = [];
@@ -162,7 +192,8 @@
                                      "spa-demo.subjects.Thing"];
   function ThingSelectorController($scope, $stateParams, Authz, Thing) {
     var vm=this;
-
+    vm.tag_query="";
+    vm.none="";
     vm.$onInit = function() {
       console.log("ThingSelectorController",$scope);
       $scope.$watch(function(){ return Authz.getAuthorizedUserId(); }, 

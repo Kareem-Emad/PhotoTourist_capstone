@@ -3,7 +3,7 @@ class ThingsController < ApplicationController
   helper ThingsHelper
   before_action :set_thing, only: [:show, :update, :destroy]
   before_action :authenticate_user!, only: [:create, :update, :destroy]
-  wrap_parameters :thing, include: ["name", "description", "notes"]
+  wrap_parameters :thing, include: ["name", "description", "notes","tag_titles"]
   after_action :verify_authorized
   after_action :verify_policy_scoped, only: [:index]
 
@@ -39,8 +39,13 @@ class ThingsController < ApplicationController
 
   def update
     authorize @thing
-
-    if @thing.update(thing_params)
+    if thing_params[:tag_titles]
+      thing_params[:tag_titles].each do |t|
+        tag = Tag.where(:title=>t).first
+        @thing.tags << tag unless @thing.tags.include? tag
+      end
+    end
+    if @thing.update(thing_params.except(:tag_titles))
       head :no_content
     else
       render json: {errors:@thing.errors.messages}, status: :unprocessable_entity
@@ -63,6 +68,6 @@ class ThingsController < ApplicationController
     def thing_params
       params.require(:thing).tap {|p|
           p.require(:name) #throws ActionController::ParameterMissing
-        }.permit(:name, :description, :notes)
+        }.permit(:name, :description, :notes,:tag_titles=>[])
     end
 end

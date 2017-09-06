@@ -40,6 +40,9 @@
     <span class="invalid">{{$ctrl.item.errors.notes}}</span>
   </div>
 
+
+
+
   <div class="thing-images row col-lg-12">
     <label class="col-xs-3">Related Images:</label>
     <ul class="thing-images col-xs-9">
@@ -71,6 +74,33 @@
       </li>
     </ul>
     <span class="invalid">{{$ctrl.item.errors.images}}</span>
+  </div>
+
+
+
+  <div class="thing-tags row col-lg-12">
+    <label class="col-xs-3">Tags:</label>
+    <ul>
+      <li ng-repeat="tag in $ctrl.item.tags">
+        <a ui-sref="things({id:item.id})">
+           <span class="thing_id id">{{tag.id}}</span>
+           {{tag.title}}
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+
+
+  <div class="thing-add-tag row col-lg-12"  ng-show="$ctrl.authz.canUpdate && thingform.$valid" >  
+    <input type="text"
+                 name="tag_title"
+                 ng-model="$ctrl.ntag_title">
+    <button class="btn btn-primary" ng-click="$ctrl.addTag()">Add Tag</button>
+  </div>
+  <div class="row col-lg-12">
+    <hr>
   </div>
 
   <div class="thing-controls"
